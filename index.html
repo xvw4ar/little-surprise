@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eadcc5">
+<title>A little something for you</title>
+<style>
+:root{
+  --cream:#eadcc5; --paper:#f5ecdc; --navy:#1d2d4d;
+  --ink:#263552; --muted:#8c806d; --line:#ddcdb5;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Georgia,"Times New Roman",serif;color:var(--ink)}
+body{
+  min-height:100vh; overflow-x:hidden; display:grid; place-items:center;
+  padding:28px 17px; background:linear-gradient(135deg,#eee2cf 0%,#e7d7bd 55%,#efe4d2 100%);
+}
+#stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff9ed;opacity:.48;animation:float var(--dur) ease-in-out infinite alternate}
+.star:nth-child(3n){background:#b5a486;opacity:.35;width:2px;height:2px}
+@keyframes float{from{transform:translate3d(0,0,0);opacity:.2}to{transform:translate3d(13px,-24px,0);opacity:.65}}
+main{position:relative;z-index:1;width:min(100%,650px)}
+.page{display:none;animation:appear .85s ease both}
+.page.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.card{
+  background:rgba(247,239,225,.92);border:1px solid rgba(210,193,166,.78);
+  border-radius:30px;box-shadow:0 18px 55px rgba(75,59,37,.08);
+  padding:clamp(30px,7vw,58px);text-align:center;
+}
+.eyebrow{font-size:clamp(11px,2.5vw,15px);letter-spacing:.28em;color:var(--muted);text-transform:uppercase;margin:0 0 30px}
+.script{font-family:"Brush Script MT","Segoe Script","URW Chancery L",cursive;font-style:italic;font-weight:500}
+h1{font-size:clamp(38px,9vw,62px);line-height:1.12;color:var(--navy);margin:0 0 25px}
+.subtitle{font-size:clamp(17px,4vw,22px);line-height:1.6;margin:0 0 38px}
+button{
+  border:0;background:var(--navy);color:#f6eddf;padding:16px 39px;border-radius:100px;
+  font:18px Georgia,serif;letter-spacing:.04em;cursor:pointer;transition:transform .35s,background .35s,box-shadow .35s;
+  box-shadow:0 8px 20px rgba(29,45,77,.12)
+}
+button:hover{transform:translateY(-3px);background:#293d63;box-shadow:0 12px 24px rgba(29,45,77,.17)}
+button:active{transform:scale(.98)}
+.letter{text-align:left;line-height:1.9;font-size:clamp(15px,3.6vw,18px);white-space:normal}
+.letter h2{text-align:center;color:var(--navy);font-size:clamp(30px,7vw,43px);margin:0 0 28px}
+.letter p{margin:0 0 18px}
+.signature{text-align:center;color:var(--navy);font-size:28px;margin-top:25px}
+.next-wrap{text-align:center;margin-top:30px}
+.next-link{display:inline-block;color:var(--navy);font-size:19px;text-decoration:none;letter-spacing:.04em;border-bottom:1px solid transparent;padding:8px 5px;transition:.3s}
+.next-link:hover{border-color:var(--navy);transform:translateY(-2px)}
+.song-card{padding:clamp(28px,7vw,48px)}
+.song-title{font-size:clamp(35px,8vw,48px);margin:0 0 32px;color:var(--navy)}
+.player{
+  display:flex;align-items:center;gap:18px;text-align:left;padding:22px;
+  border-radius:25px;background:#efe4d2;border:1px solid var(--line);margin:0 auto 35px;
+}
+.disc{flex:0 0 88px;width:88px;height:88px;border-radius:50%;display:grid;place-items:center;
+  background:repeating-radial-gradient(circle at center,#142541 0 5px,#263b60 6px 10px);
+  box-shadow:0 7px 16px rgba(29,45,77,.16);color:#f4ead9;font-size:27px}
+.track{min-width:0;flex:1}
+.track-name{font:600 clamp(17px,4vw,22px) Arial,sans-serif;color:var(--navy);line-height:1.35;margin:0 0 8px}
+.track-sub{font:16px Arial,sans-serif;color:#777;margin:0}
+audio{width:100%;margin-top:17px;height:42px}
+.song-line{font-size:clamp(25px,6vw,38px);line-height:1.5;color:var(--navy);margin:0 0 25px}
+.restart{background:transparent;color:var(--navy);box-shadow:none;padding:9px 18px;font-style:italic}
+.restart:hover{background:rgba(29,45,77,.07);box-shadow:none}
+@media(max-width:430px){.player{gap:13px;padding:16px}.disc{flex-basis:68px;width:68px;height:68px;font-size:22px}.card{border-radius:24px}}
+</style>
+</head>
+<body>
+<div id="stars" aria-hidden="true"></div>
+<main>
+  <section class="page active" id="welcome">
+    <div class="card">
+      <h1 class="script">A little something for you</h1>
+      <button type="button" onclick="showPage('letter')">Press here</button>
+    </div>
+  </section>
+
+  <section class="page" id="letter">
+    <div class="card letter">
+      <h2 class="script">To my favorite person,</h2>
+      <p>On your birthday, I wish you years filled with happiness, surrounded by the people you love, a heart that never knows sadness, and days that are just as beautiful as your soul.</p>
+      <p>I hope I get to see you achieve all your dreams and reach the place you truly deserve. I'll always cheer you on, support you and your beautiful ideas, and I'll always be proud of every effort you make.</p>
+      <p>You're truly such a wonderful and special person to me. You have such a unique personality, and having you in my life gives me such a beautiful feeling.</p>
+      <p>I wanted to make you something small that would make you smile, just like you always manage to make me smile with all the little things and tiny details you do for me.</p>
+      <p>And finally, I want to tell you once again: happy birthday! I hope you enjoy your day and make beautiful memories, because today isn't just an ordinary day...</p>
+      <p><strong>Today is special because it's the day the most special person in my life was born.</strong></p>
+      <div class="signature script">With all my love ♡</div>
+    </div>
+    <div class="next-wrap"><a class="next-link" href="#" onclick="showPage('song');return false;">One more thing</a></div>
+  </section>
+
+  <section class="page" id="song">
+    <div class="card song-card">
+      <h2 class="song-title script">A song for you</h2>
+      <div class="player">
+        <div class="disc" aria-hidden="true">♡</div>
+        <div class="track">
+          <p class="track-name">Can't Help Falling in Love</p>
+          <audio id="songAudio" controls preload="metadata">
+            <source src="assets/song.m4a" type="audio/mp4">
+            Your browser does not support audio playback.
+          </audio>
+        </div>
+      </div>
+      <p class="song-line script">Take my hand, let's create<br>our own galaxy.</p>
+      <button class="restart" type="button" onclick="restartSite()">↻ &nbsp; start again</button>
+    </div>
+  </section>
+</main>
+<script>
+const starField=document.getElementById('stars');
+for(let i=0;i<34;i++){
+  const s=document.createElement('i');s.className='star';
+  s.style.left=(Math.random()*100)+'%';s.style.top=(Math.random()*100)+'%';
+  s.style.setProperty('--dur',(5+Math.random()*7)+'s');
+  s.style.animationDelay=(-Math.random()*8)+'s';starField.appendChild(s);
+}
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id!=='song'){const a=document.getElementById('songAudio');a.pause();}
+}
+function restartSite(){
+  const a=document.getElementById('songAudio');a.pause();a.currentTime=0;showPage('welcome');
+}
+</script>
+</body>
+</html>
